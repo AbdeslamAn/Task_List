@@ -1,3 +1,3 @@
 # Task_List
-Das ist mein erstes Projekt zur Task-List mit der Programmiersprache Laravel 12.
-This is my first project about a task list using the Laravel 12 programming language.
+Das ist mein erstes Projekt zur Task-List mit der Programmiersprache <u>Laravel 12</u>.<br>
+This is my first project about a task list using the <u>Laravel 12</u> programming language.
