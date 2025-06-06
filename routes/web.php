@@ -19,8 +19,8 @@ class Task
     public function __construct(
         public int $id,
         public string $title,
-        public string $description,
-        public ?string $long_description,
+        public string $Beschreibung,
+        public ?string $lang_Beschreibung,
         public bool $completed,
         public string $created_at,
         public string $updated_at
@@ -77,13 +77,8 @@ Route::get('/tasks', function () use ($tasks) {
     ]);
 })->name('tasks.index');
 
-Route::get('/tasks/{id}', function ($id) use ($tasks) {
-    $task = collect($tasks)->firstWhere('id',$id);
-
-    if(!$tasks){
-        abort(Response::HTTP_NOT_FOUND);
-    }
-    return view('schow', ['task' => $task]);
+Route::get('/tasks/{id}', function ($id) {
+     return view('show', ['task' => \App\Models\Task::findOrFail($id)]);
 })->name('tasks.show');
 
 // Route::get('/xxx', function () {
