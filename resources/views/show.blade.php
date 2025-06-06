@@ -4,10 +4,10 @@
 
 @section('content')
 {{-- <h1>{{$task->title}}</h1> --}}
-<p>{{$task->description}}</p>
+<p>{{$task->Beschreibung}}</p>
 
-@if ($task->long_description)
-    <p>{{$task->long_description}}</p>
+@if ($task->lang_Beschreibung)
+    <p>{{$task->lang_Beschreibung}}</p>
 @endif
 
 <p>{{$task->created_at}}</p>
