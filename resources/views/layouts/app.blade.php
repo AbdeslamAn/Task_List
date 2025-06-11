@@ -8,7 +8,10 @@
     @yield('styles')
 </head>
 <body>
-    
+
+    @if (session()->has('succes'))
+        <div>{{session('succes')}}</div>
+    @endif
     <h1>@yield('title')</h1>
 
     <div>
