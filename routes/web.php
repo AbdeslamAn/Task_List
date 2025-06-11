@@ -32,6 +32,13 @@ Route::get('/tasks', function ()  {
 Route::view('/tasks/create', 'create')
 ->name('tasks.create');
 
+Route::get('/tasks/{id}/edit', function ($id) {
+     return view('edit', ['task' => Task::findOrFail($id)]);
+})->name('tasks.edit');
+
+
+
+
 Route::get('/tasks/{id}', function ($id) {
      return view('show', ['task' => Task::findOrFail($id)]);
 })->name('tasks.show');
@@ -74,6 +81,28 @@ Route::post('/tasks', function (Request $request) {
         ->with('succes', 'Aufgabe erfolgreich erstellt');
 })->name('tasks.store');
 
+
+
+Route::put('/tasks/{id}', function ($id, Request $request) {
+    
+    //  Validate the form input
+    //  Eingaben vom Formular validieren (überprüfen)
+    $data = $request->validate([
+        'title' => 'required|max:255',
+        'beschreibung' => 'required',
+        'lang_beschreibung' => 'required'
+    ]);
+
+
+    $task = Task::findOrFail($id);
+    $task->title = $data['title'];
+    $task->beschreibung = $data['beschreibung'];
+    $task->lang_beschreibung = $data['lang_beschreibung'];
+    $task->save();
+
+    return redirect()->route('tasks.show', ['id' => $task->id])
+        ->with('succes', 'Aufgabe erfolgreich ändert');
+})->name('tasks.update');
 
 // Route::get('/xxx', function () {
 //     return 'Hello';
