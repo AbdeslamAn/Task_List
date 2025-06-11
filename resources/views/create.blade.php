@@ -8,7 +8,7 @@
     <style>
         .fahler-nachricht{
             color: red;
-            font-size: 0, 8rem;
+            font-size: 0.8rem;
         }
     </style>
 @endsection
