@@ -43,20 +43,33 @@ Route::post('/tasks', function (Request $request) {
     dd($request->all());
 })->name('tasks.store');*/
 
+
+    //  Route to store a new task
+    //  Route zum Speichern einer neuen Aufgabe (Task)
 Route::post('/tasks', function (Request $request) {
-    // Validate Data
+    
+    //  Validate the form input
+    //  Eingaben vom Formular validieren (überprüfen)
     $data = $request->validate([
         'title' => 'required|max:255',
         'beschreibung' => 'required',
         'lang_beschreibung' => 'required'
     ]);
 
+    //  Create a new task
+    //  Neue Aufgabe erstellen
     $task = new Task;
+    //  Insert form values into the task
+    //  Werte aus dem Formular in die Aufgabe einfügen
     $task->title = $data['title'];
     $task->beschreibung = $data['beschreibung'];
     $task->lang_beschreibung = $data['lang_beschreibung'];
+    //  Save the task in the database
+    //  Aufgabe in der Datenbank speichern
     $task->save();
 
+    //  Redirect to the task's detail page
+    //  Zur Detail-Seite der Aufgabe weiterleiten
     return redirect()->route('tasks.show', ['id' => $task->id]);
 })->name('tasks.store');
 
