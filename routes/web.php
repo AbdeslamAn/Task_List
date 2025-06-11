@@ -70,7 +70,8 @@ Route::post('/tasks', function (Request $request) {
 
     //  Redirect to the task's detail page
     //  Zur Detail-Seite der Aufgabe weiterleiten
-    return redirect()->route('tasks.show', ['id' => $task->id]);
+    return redirect()->route('tasks.show', ['id' => $task->id])
+        ->with('succes', 'Aufgabe erfolgreich erstellt');
 })->name('tasks.store');
 
 
