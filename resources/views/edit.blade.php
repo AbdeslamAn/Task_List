@@ -25,14 +25,14 @@
     </div>
     <div>
         <label for="beschreibung">Beschreibung</label>
-        <textarea name="beschreibung" id="beschreibung" rows="5">{{$task->beschreibung}}</textarea>
+        <textarea name="beschreibung" id="beschreibung" rows="5">{{$task->Beschreibung}}</textarea>
         @error('beschreibung')
             <p class="fahler-nachricht">{{"Das Feld Beschreibung ist erforderlich."}}</p>
         @enderror
     </div>
     <div>
         <label for="lang_beschreibung">lang Beschreibung</label>
-        <textarea name="lang_beschreibung" id="lang_beschreibung" rows="10">{{$task->lang_beschreibung}}</textarea>
+        <textarea name="lang_beschreibung" id="lang_beschreibung" rows="10">{{$task->lang_Beschreibung}}</textarea>
         @error('lang_beschreibung')
             <p class="fahler-nachricht">{{"Das Feld lang Beschreibung ist erforderlich."}}</p>
         @enderror
