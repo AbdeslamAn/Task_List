@@ -54,7 +54,7 @@ Route::post('/tasks', function (Request $request) {
     //  Route to store a new task
     //  Route zum Speichern einer neuen Aufgabe (Task)
 Route::post('/tasks', function (Request $request) {
-    
+
     //  Validate the form input
     //  Eingaben vom Formular validieren (überprüfen)
     $data = $request->validate([
@@ -84,7 +84,7 @@ Route::post('/tasks', function (Request $request) {
 
 
 Route::put('/tasks/{id}', function ($id, Request $request) {
-    
+
     //  Validate the form input
     //  Eingaben vom Formular validieren (überprüfen)
     $data = $request->validate([
@@ -96,8 +96,8 @@ Route::put('/tasks/{id}', function ($id, Request $request) {
 
     $task = Task::findOrFail($id);
     $task->title = $data['title'];
-    $task->beschreibung = $data['beschreibung'];
-    $task->lang_beschreibung = $data['lang_beschreibung'];
+    $task->Beschreibung = $data['beschreibung'];
+    $task->lang_Beschreibung = $data['lang_beschreibung'];
     $task->save();
 
     return redirect()->route('tasks.show', ['id' => $task->id])
