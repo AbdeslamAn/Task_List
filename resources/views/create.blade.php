@@ -17,21 +17,21 @@
 @csrf
     <div>
         <label for="title">Titel</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" value="{{ old('title') }}">
         @error('title')
             <p class="fahler-nachricht">{{"Das Feld Titel ist erforderlich."}}</p>
         @enderror
     </div>
     <div>
         <label for="beschreibung">Beschreibung</label>
-        <textarea name="beschreibung" id="beschreibung" rows="5"></textarea>
+        <textarea name="beschreibung" id="beschreibung" rows="5" >{{ old('beschreibung') }}</textarea>
         @error('beschreibung')
             <p class="fahler-nachricht">{{"Das Feld Beschreibung ist erforderlich."}}</p>
         @enderror
     </div>
     <div>
         <label for="lang_beschreibung">lang Beschreibung</label>
-        <textarea name="lang_beschreibung" id="lang_beschreibung" rows="10"></textarea>
+        <textarea name="lang_beschreibung" id="lang_beschreibung" rows="10" >{{ old('lang_beschreibung') }}</textarea>
         @error('lang_beschreibung')
             <p class="fahler-nachricht">{{"Das Feld lang Beschreibung ist erforderlich."}}</p>
         @enderror
