@@ -32,16 +32,18 @@ Route::get('/tasks', function ()  {
 Route::view('/tasks/create', 'create')
 ->name('tasks.create');
 
-Route::get('/tasks/{id}/edit', function ($id) {
-     return view('edit', ['task' => Task::findOrFail($id)]);
+Route::get('/tasks/{task}/edit', function (Task $task) {
+     return view('edit', ['task' => $task]);
 })->name('tasks.edit');
 
 
 
 
-Route::get('/tasks/{id}', function ($id) {
-     return view('show', ['task' => Task::findOrFail($id)]);
+Route::get('/tasks/{task}', function   (Task $task) {
+     return view('show', ['task' =>$task]);
 })->name('tasks.show');
+
+
 
 // Display sent information
 // Gesendete Informationen anzeigen
@@ -83,7 +85,7 @@ Route::post('/tasks', function (Request $request) {
 
 
 
-Route::put('/tasks/{id}', function ($id, Request $request) {
+Route::put('/tasks/{task}', function (Task $task, Request $request) {
 
     //  Validate the form input
     //  Eingaben vom Formular validieren (überprüfen)
@@ -93,8 +95,6 @@ Route::put('/tasks/{id}', function ($id, Request $request) {
         'lang_beschreibung' => 'required'
     ]);
 
-
-    $task = Task::findOrFail($id);
     $task->title = $data['title'];
     $task->Beschreibung = $data['beschreibung'];
     $task->lang_Beschreibung = $data['lang_beschreibung'];
