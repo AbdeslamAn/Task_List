@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\TaskRequest;
 use \App\Models\Task;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -55,16 +56,9 @@ Route::post('/tasks', function (Request $request) {
 
     //  Route to store a new task
     //  Route zum Speichern einer neuen Aufgabe (Task)
-Route::post('/tasks', function (Request $request) {
+Route::post('/tasks', function (TaskRequest $request) {
 
-    //  Validate the form input
-    //  Eingaben vom Formular validieren (überprüfen)
-    $data = $request->validate([
-        'title' => 'required|max:255',
-        'beschreibung' => 'required',
-        'lang_beschreibung' => 'required'
-    ]);
-
+    /* $data = $request->validated();
     //  Create a new task
     //  Neue Aufgabe erstellen
     $task = new Task;
@@ -75,32 +69,32 @@ Route::post('/tasks', function (Request $request) {
     $task->lang_beschreibung = $data['lang_beschreibung'];
     //  Save the task in the database
     //  Aufgabe in der Datenbank speichern
-    $task->save();
+    $task->save();*/
+
+    // or
+
+    $task = Task::create($request->validated());
 
     //  Redirect to the task's detail page
     //  Zur Detail-Seite der Aufgabe weiterleiten
-    return redirect()->route('tasks.show', ['id' => $task->id])
+    return redirect()->route('tasks.show', ['task' => $task->id])
         ->with('succes', 'Aufgabe erfolgreich erstellt');
 })->name('tasks.store');
 
 
 
-Route::put('/tasks/{task}', function (Task $task, Request $request) {
-
-    //  Validate the form input
-    //  Eingaben vom Formular validieren (überprüfen)
-    $data = $request->validate([
-        'title' => 'required|max:255',
-        'beschreibung' => 'required',
-        'lang_beschreibung' => 'required'
-    ]);
-
+Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
+   /* $data = $request->validated();
     $task->title = $data['title'];
     $task->Beschreibung = $data['beschreibung'];
     $task->lang_Beschreibung = $data['lang_beschreibung'];
-    $task->save();
+    $task->save();*/
 
-    return redirect()->route('tasks.show', ['id' => $task->id])
+    //or
+
+    $task->update($request->validated());
+
+    return redirect()->route('tasks.show', ['task' => $task->id])
         ->with('succes', 'Aufgabe erfolgreich ändert');
 })->name('tasks.update');
 
