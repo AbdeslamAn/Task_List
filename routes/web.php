@@ -98,6 +98,15 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
         ->with('succes', 'Aufgabe erfolgreich ändert');
 })->name('tasks.update');
 
+
+Route::delete('/tasks/{task}', function (Task $task) 
+{
+    $task->delete();
+
+    return redirect()->route('tasks.index')
+        ->with('succes',"Aufgabe erfolgreich gelöscht");
+})->name('tasks.destroy');
+
 // Route::get('/xxx', function () {
 //     return 'Hello';
 // })->name('hello');
