@@ -22,6 +22,10 @@
 @endforelse --}}
 
 @section('content')
+
+<div>
+    <a href="{{ route('tasks.create') }}">Aufgabe hinzufügen</a>
+</div>
 @forelse ($tasks as $task)
             <div><a href="{{route('tasks.show',['task' =>$task->id])}}">{{$task->title}}</a></div>
 @empty
