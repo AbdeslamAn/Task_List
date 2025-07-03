@@ -26,7 +26,7 @@ Route::get('/tasks', function ()  {
     return view('index', [
         // 'tasks' => \App\Models\Task::all()
         // 'tasks' => \App\Models\Task::latest()->where('abgeschlossen', true)->get()
-        'tasks' => Task::latest()->get()
+        'tasks' => Task::latest()->paginate(10)
     ]);
 })->name('tasks.index');
 
@@ -99,7 +99,7 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
 })->name('tasks.update');
 
 
-Route::delete('/tasks/{task}', function (Task $task) 
+Route::delete('/tasks/{task}', function (Task $task)
 {
     $task->delete();
 
