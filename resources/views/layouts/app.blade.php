@@ -8,12 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     @yield('styles')
 </head>
-<body>
+<body class="container mx-auto mt-10 max-w-lg" >
+
 
     @if (session()->has('succes'))
         <div>{{session('succes')}}</div>
     @endif
-    <h1>@yield('title')</h1>
+    <h1 class="mb-4 text-Zxl">@yield('title')</h1>
 
     <div>
         @yield('content')
