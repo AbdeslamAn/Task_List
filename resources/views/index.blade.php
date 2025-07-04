@@ -25,7 +25,7 @@
 
 <nav class="mb-4">
     <a href="{{ route('tasks.create') }}"
-            class="font-medium text-gray-700 underline decoration-pink-500">Aufgabe hinzufügen</a>
+            class="link">Aufgabe hinzufügen</a>
 </nav>
 @forelse ($tasks as $task)
             <div>
