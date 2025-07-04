@@ -95,7 +95,7 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
     $task->update($request->validated());
 
     return redirect()->route('tasks.show', ['task' => $task->id])
-        ->with('succes', 'Aufgabe erfolgreich ändert');
+        ->with('succes', 'Aufgabe erfolgreich bearbeitet');
 })->name('tasks.update');
 
 
@@ -106,6 +106,13 @@ Route::delete('/tasks/{task}', function (Task $task)
     return redirect()->route('tasks.index')
         ->with('succes',"Aufgabe erfolgreich gelöscht");
 })->name('tasks.destroy');
+
+
+Route::put('tasks/{task}/toggle-complete', function ( Task $task)
+{
+    $task->toggleComplete();
+    return redirect()->back()->with('succes', 'Aufgabe erfolgreich bearbeitet');
+})->name('tasks.toggle-complete');
 
 // Route::get('/xxx', function () {
 //     return 'Hello';
