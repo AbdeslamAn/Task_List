@@ -12,4 +12,9 @@ class Task extends Model
 
     protected $fillable = ['title', 'beschreibung', 'lang_beschreibung'];
 
+    public function toggleComplete()
+    {
+        $this->abgeschlossen = !$this->abgeschlossen;
+        $this->save();
+    }
 }
